@@ -2,6 +2,8 @@
 
 /* @import 'react-datepicker/dist/react-datepicker.css'; */
 
-@import "./styles/fonts.css";
+@import url("https://fonts.googleapis.com/css2?family=Alata&family=Inter:wght@400;600;800&family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
 @import "./styles/vars.css";
 @import "./styles/common.css";
+@import "./styles/visually-hidden.css";

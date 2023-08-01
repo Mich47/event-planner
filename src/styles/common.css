@@ -10,7 +10,7 @@ html {
 body {
   color: var(--text-color-primary);
   background-color: var(--background-color-primary);
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-primary);
   font-weight: 400;
 }
 

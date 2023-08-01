@@ -1,13 +1,13 @@
 import { Header } from "./Header";
-import { Container } from "./MainLayout.styled";
+import { Container, MainStyled } from "./MainLayout.styled";
 
 export default function MainLayout() {
   return (
     <Container>
       <Header />
-      <main>
+      <MainStyled>
         <div></div>
-      </main>
+      </MainStyled>
     </Container>
   );
 }
