@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+
+// const Home = lazy(() => import("./pages/Home"));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="" element={<MainLayout />}>
+          {/* <Route
+            index
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <Home />
+              </Suspense>
+            }
+          />
+          <Route
+            path="create"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <CreateEvent />
+              </Suspense>
+            }
+          />
+          <Route
+            path="event"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <Event />
+              </Suspense>
+            }
+          />
+          <Route
+            path="edit"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <EditEvent />
+              </Suspense>
+            }
+          />
+          <Route path="*" element={<Home />} /> */}
+        </Route>
+      </Routes>
+    </>
   );
 }
 
