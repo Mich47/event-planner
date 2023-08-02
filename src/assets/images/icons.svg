@@ -32,7 +32,7 @@
                 d="M5.333 5.333l6.667 10.667v8l8 4v-12l6.667-10.667h-21.333z"></path>
         </symbol>
         <symbol id="icon-plus" viewBox="0 0 33 32">
-            <path fill="none" stroke="#fff" style="stroke: var(--color2, #fff)" stroke-linejoin="round"
+            <path fill="none" stroke="currentColor" style="stroke: var(--color2, currentColor)" stroke-linejoin="round"
                 stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M16.667 5.333v21.333M6 16h21.333">
             </path>
         </symbol>

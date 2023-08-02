@@ -7,7 +7,7 @@ export const Search = () => {
     <div>
       <Form method="submit">
         <SearchWrapper>
-          <label for="search" className="visually-hidden">
+          <label htmlFor="search" className="visually-hidden">
             Search by keywords
           </label>
           <Input
