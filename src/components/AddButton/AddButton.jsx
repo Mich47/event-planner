@@ -1,13 +1,13 @@
-import { ButtonStyled, Span, Svg } from "./AddButton.styled";
+import { LinkStyled, Span, Svg } from "./AddButton.styled";
 import icons from "../../assets/images/icons.svg";
 
 export const AddButton = () => {
   return (
-    <ButtonStyled type="button">
+    <LinkStyled to={"create"}>
       <Svg>
         <use href={`${icons}#icon-plus`} />
       </Svg>
       <Span>Add new event</Span>
-    </ButtonStyled>
+    </LinkStyled>
   );
 };

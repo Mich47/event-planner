@@ -1,17 +1,22 @@
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
+import { Suspense, lazy } from "react";
 
-// const Home = lazy(() => import("./pages/Home"));
+const Home = lazy(() => import("./pages/Home/Home"));
+const Create = lazy(() => import("./pages/Create/Create"));
+const Event = lazy(() => import("./pages/Event/Event"));
+const Edit = lazy(() => import("./pages/Edit/Edit"));
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="" element={<MainLayout />}>
-          {/* <Route
+          <Route
             index
             element={
-              <Suspense fallback={<PageLoader />}>
+              // <Suspense fallback={<PageLoader />}>
+              <Suspense fallback={"..."}>
                 <Home />
               </Suspense>
             }
@@ -19,15 +24,15 @@ function App() {
           <Route
             path="create"
             element={
-              <Suspense fallback={<PageLoader />}>
-                <CreateEvent />
+              <Suspense fallback={"..."}>
+                <Create />
               </Suspense>
             }
           />
           <Route
             path="event"
             element={
-              <Suspense fallback={<PageLoader />}>
+              <Suspense fallback={"..."}>
                 <Event />
               </Suspense>
             }
@@ -35,12 +40,12 @@ function App() {
           <Route
             path="edit"
             element={
-              <Suspense fallback={<PageLoader />}>
-                <EditEvent />
+              <Suspense fallback={"..."}>
+                <Edit />
               </Suspense>
             }
           />
-          <Route path="*" element={<Home />} /> */}
+          <Route path="*" element={<Home />} />
         </Route>
       </Routes>
     </>

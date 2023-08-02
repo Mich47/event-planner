@@ -53,14 +53,12 @@ export const ButtonStyled = styled.button`
   justify-content: center;
   align-items: center;
   padding: ${paddingYX};
+  color: var(--background-color-primary);
   background-color: var(--color-accent);
   border-radius: ${borderRadius};
   width: ${sizeMobile};
   box-shadow: var(--shadow-primary);
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--color-accent);
-  transition: background-color var(--animation), border-color var(--animation);
+  transition: background-color var(--animation);
 
   @media (min-width: 768px) {
     width: ${sizeTab};
@@ -68,7 +66,31 @@ export const ButtonStyled = styled.button`
 
   &:hover {
     background-color: var(--color-accent-hover);
+  }
+`;
+
+export const ButtonStyledNotAccent = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 15px;
+  background-color: var(--background-color-primary);
+  border-radius: 4px;
+  width: 108px;
+  box-shadow: var(--shadow-primary);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transition: color var(--animation), border-color var(--animation);
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
+
+  &:hover {
     border-color: var(--color-accent-hover);
+    color: var(--color-accent-hover);
   }
 `;
 
@@ -79,8 +101,15 @@ export const Svg = styled.svg`
 `;
 
 export const Span = styled.span`
-  color: var(--background-color-primary);
+  color: inherit;
   font-size: ${fontSiz};
   font-weight: 500;
   line-height: ${lineHeigh};
+`;
+
+export const SpanNotAccent = styled.span`
+  color: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
 `;

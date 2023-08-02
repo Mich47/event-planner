@@ -1,5 +1,4 @@
-import { AddButton } from "../components/AddButton/AddButton";
-import { Button } from "../components/Button/Button";
+import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
 import { Container, MainStyled } from "./MainLayout.styled";
 
@@ -8,10 +7,7 @@ export default function MainLayout() {
     <Container>
       <Header />
       <MainStyled>
-        <div>
-          <AddButton />
-          <Button title="Hello" accent />
-        </div>
+        <Outlet />
       </MainStyled>
     </Container>
   );
