@@ -2,6 +2,7 @@
   "name": "event-planner",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mich47.github.io/event-planner/",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
