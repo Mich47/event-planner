@@ -1,4 +1,5 @@
 import { AddButton } from "../../components/AddButton/AddButton";
+import { EventCard } from "../../components/EventCard/EventCard";
 import { PAGE_NAME } from "../../constants/PageName";
 import { Container, SectionStyled, TitleStyled, Wrapper } from "./Home.styled";
 
@@ -12,6 +13,7 @@ export default function Home() {
         <AddButton />
       </Container>
       <div>Event List</div>
+      <EventCard />
     </SectionStyled>
   );
 }
