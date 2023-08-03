@@ -11,6 +11,16 @@ export const Container = styled.div`
   box-shadow: var(--shadow-primary);
 `;
 
+export const MarkWrapper = styled.div`
+  /* margin-top: -40px; */
+  position: absolute;
+  left: 12px;
+  top: 12px;
+
+  display: flex;
+  gap: 12px;
+`;
+
 export const ImageContainer = styled.div`
   width: 100%;
 `;

@@ -3,7 +3,8 @@ import backgroundImage from "../assets/images/background.svg";
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   background-color: var(--background-color-primary);
   background-repeat: no-repeat;
   background-image: url(${backgroundImage});

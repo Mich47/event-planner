@@ -8,6 +8,7 @@ import {
   Description,
   Image,
   ImageContainer,
+  MarkWrapper,
   MoreInfoContainer,
   Title,
   Wrapper,
@@ -15,9 +16,14 @@ import {
 
 import defaultImg from "../../assets/images/default-img-s.svg";
 import { useState } from "react";
+import { Mark } from "../Mark/Mark";
+import { useNavigate } from "react-router-dom";
 
-export const EventCard = () => {
+export const EventCard = ({ event }) => {
+  console.log("event ", event);
   const [isMouseOver, setIsMouseOver] = useState(0);
+  const navigate = useNavigate();
+
   return (
     <Container
       onMouseOver={() => {
@@ -27,6 +33,10 @@ export const EventCard = () => {
         setIsMouseOver(0);
       }}
     >
+      <MarkWrapper>
+        <Mark text={"Category"} />
+        <Mark text={"Priority"} color={"red"} />
+      </MarkWrapper>
       <ImageContainer>
         <Image src={defaultImg} alt="Event name" />
       </ImageContainer>
@@ -44,7 +54,13 @@ export const EventCard = () => {
             necessitatibus maxime similique.
           </Description>
           <MoreInfoContainer>
-            <Button size={BUTTON_SIZES.medium} title="More info" />
+            <Button
+              size={BUTTON_SIZES.medium}
+              title="More info"
+              onClick={() => {
+                navigate("event");
+              }}
+            />
           </MoreInfoContainer>
         </Wrapper>
       </DescContainer>
