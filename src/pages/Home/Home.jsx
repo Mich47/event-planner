@@ -12,7 +12,7 @@ const events = [
     time: "time",
     location: "location",
     category: "category",
-    picture: "picture",
+    // picture: "picture",
     priority: "priority",
   },
   {
@@ -23,7 +23,7 @@ const events = [
     time: "time",
     location: "location",
     category: "category",
-    picture: "picture",
+    // picture: "picture",
     priority: "priority",
   },
   {
@@ -34,7 +34,7 @@ const events = [
     time: "time",
     location: "location",
     category: "category",
-    picture: "picture",
+    // picture: "picture",
     priority: "priority",
   },
   {
@@ -45,7 +45,7 @@ const events = [
     time: "time",
     location: "location",
     category: "category",
-    picture: "picture",
+    // picture: "picture",
     priority: "priority",
   },
   {
@@ -56,7 +56,7 @@ const events = [
     time: "time",
     location: "location",
     category: "category",
-    picture: "picture",
+    // picture: "picture",
     priority: "priority",
   },
 ];

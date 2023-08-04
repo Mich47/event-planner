@@ -1,10 +1,17 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const Form = styled.form`
   position: relative;
-  width: 272px;
+  width: 100%;
+  min-width: 272px;
+  max-width: 368px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 480px) {
     width: 368px;
   }
 

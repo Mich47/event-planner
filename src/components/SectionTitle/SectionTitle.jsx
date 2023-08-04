@@ -4,7 +4,7 @@ import { PAGE_NAME } from "../../constants/PageName";
 
 export const SectionTitle = () => {
   const location = useLocation();
-  const title = PAGE_NAME[location.pathname.slice(1)];
+  const title = PAGE_NAME[location.pathname.split("/")[1]];
 
   return (
     <Wrapper>

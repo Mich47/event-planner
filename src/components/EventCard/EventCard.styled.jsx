@@ -6,13 +6,11 @@ export const Container = styled.div`
   overflow: hidden;
   min-width: 272px;
   max-width: 332px;
-  /* min-height: 390px; */
   height: 480px;
   box-shadow: var(--shadow-primary);
 `;
 
 export const MarkWrapper = styled.div`
-  /* margin-top: -40px; */
   position: absolute;
   left: 12px;
   top: 12px;

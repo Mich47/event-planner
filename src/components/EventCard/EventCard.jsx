@@ -20,7 +20,17 @@ import { Mark } from "../Mark/Mark";
 import { useNavigate } from "react-router-dom";
 
 export const EventCard = ({ event }) => {
-  console.log("event ", event);
+  const {
+    id,
+    title,
+    description,
+    date,
+    time,
+    location,
+    category,
+    picture,
+    priority,
+  } = event;
   const [isMouseOver, setIsMouseOver] = useState(0);
   const navigate = useNavigate();
 
@@ -34,31 +44,28 @@ export const EventCard = ({ event }) => {
       }}
     >
       <MarkWrapper>
-        <Mark text={"Category"} />
-        <Mark text={"Priority"} color={"red"} />
+        <Mark text={category} />
+        <Mark text={priority} />
       </MarkWrapper>
       <ImageContainer>
-        <Image src={defaultImg} alt="Event name" />
+        <Image src={picture ?? defaultImg} alt={title ?? "event"} />
       </ImageContainer>
       <DescContainer $isMouseOver={isMouseOver}>
         <DataTimeContainer>
-          <DataTimeText>12.07 at 12:00</DataTimeText>
-          <DataTimeText>Kyiv</DataTimeText>
+          <DataTimeText>
+            {date} at {time}
+          </DataTimeText>
+          <DataTimeText>{location}</DataTimeText>
         </DataTimeContainer>
         <Wrapper>
-          <Title>Title</Title>
-          <Description>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore,
-            ducimus rem nostrum eligendi ipsam tempora fugiat culpa repellat
-            saepe, quaerat delectus est mollitia beatae aut! Ipsum doloribus
-            necessitatibus maxime similique.
-          </Description>
+          <Title>{title}</Title>
+          <Description>{description}</Description>
           <MoreInfoContainer>
             <Button
               size={BUTTON_SIZES.medium}
               title="More info"
               onClick={() => {
-                navigate("event");
+                navigate(`event/${id}`);
               }}
             />
           </MoreInfoContainer>

@@ -30,7 +30,7 @@ function App() {
             }
           />
           <Route
-            path="event"
+            path="event/:eventId"
             element={
               <Suspense fallback={"..."}>
                 <Event />

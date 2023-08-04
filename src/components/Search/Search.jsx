@@ -1,10 +1,17 @@
-import { Form, Input, SearchWrapper, SubmitButton, Svg } from "./Search.styled";
+import {
+  Container,
+  Form,
+  Input,
+  SearchWrapper,
+  SubmitButton,
+  Svg,
+} from "./Search.styled";
 import icons from "../../assets/images/icons.svg";
 import { ClearButton } from "../ClearButton/ClearButton";
 
 export const Search = () => {
   return (
-    <div>
+    <Container>
       <Form method="submit">
         <SearchWrapper>
           <label htmlFor="search" className="visually-hidden">
@@ -25,6 +32,6 @@ export const Search = () => {
 
         <ClearButton />
       </Form>
-    </div>
+    </Container>
   );
 };
