@@ -50,6 +50,13 @@ export const SubmitButton = styled.button`
   display: flex;
 `;
 
+export const ClearButtonWrapper = styled.div`
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  display: flex;
+`;
+
 export const Svg = styled.svg`
   width: 24px;
   height: 24px;

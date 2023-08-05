@@ -1,4 +1,5 @@
 import {
+  ClearButtonWrapper,
   Container,
   Form,
   Input,
@@ -30,7 +31,9 @@ export const Search = () => {
           </Svg>
         </SubmitButton>
 
-        <ClearButton />
+        <ClearButtonWrapper>
+          <ClearButton />
+        </ClearButtonWrapper>
       </Form>
     </Container>
   );
