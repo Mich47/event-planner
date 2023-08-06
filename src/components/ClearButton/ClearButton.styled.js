@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { INPUT_STATES } from "../../constants/InputStates";
 
 const colorOfState = ({ $inputState }) => {
-  if ($inputState === INPUT_STATES.default) {
+  console.log("$inputState ", $inputState);
+  if ($inputState === INPUT_STATES.disabled) {
     return "var(--color-divider)";
   }
 
@@ -10,18 +11,34 @@ const colorOfState = ({ $inputState }) => {
     return "var(--color-hight)";
   }
 
-  return "var(--color-accent)";
+  if (
+    $inputState === INPUT_STATES.hover ||
+    $inputState === INPUT_STATES.filled
+  ) {
+    return "var(--color-accent)";
+  }
+
+  return "var(--color-divider)";
 };
 
 const colorOfStateHover = ({ $inputState }) => {
-  if ($inputState === INPUT_STATES.default) {
-    return "var(--color-accent-hover)";
+  if ($inputState === INPUT_STATES.disabled) {
+    return "var(--color-divider)";
   }
 
   if ($inputState === INPUT_STATES.error) {
     return "var(--color-hight-hover)";
   }
-  return "var(--color-accent-hover)";
+
+  if (
+    $inputState === INPUT_STATES.hover ||
+    $inputState === INPUT_STATES.filled ||
+    $inputState === INPUT_STATES.default
+  ) {
+    return "var(--color-accent-hover)";
+  }
+
+  return "var(--color-divider)";
 };
 
 export const ButtonStyled = styled.button`

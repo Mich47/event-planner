@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 18px;
   width: 240px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 
   @media (min-width: 768px) {
     width: 308px;
@@ -36,7 +36,7 @@ export const InputStyled = styled.input`
   padding: 16px 48px 16px 12px;
   background-color: transparent;
   color: var(--text-color-secondary);
-  /* color: #7b61ff; */
+  font-family: var(--font-primary);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;

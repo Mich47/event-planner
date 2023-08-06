@@ -7,24 +7,25 @@ import {
   InputStyled,
   LabelStyled,
   Wrapper,
-} from "./Input.styled";
+} from "./TextArea.styled";
 import { INPUT_STATES } from "../../constants/InputStates";
 
-export const TextArea = ({ disabled, error, name = "" }) => {
-  console.log("disabled ", disabled);
+export const TextArea = ({ error, labelText = "", name = "" }) => {
   const [inputValue, setInputValue] = useState("");
-  // const [isDisabled, setIsDisabled] = useState(Boolean(disabled));
-  // console.log("isDisabled ", isDisabled);
-  const [inputState, setInputState] = useState(INPUT_STATES.default);
+
   const [clearBtnState, setClearBtnState] = useState(INPUT_STATES.default);
-  const [isClearBtnState, setIsClearBtnState] = useState(false);
 
   const isError = Boolean(error);
 
-  const getBtnState = (isValue, isError) => {
+  const getBtnState = (value) => {
+    const isValue = Boolean(value);
+    console.log("isValue ", isValue);
+    console.log("isError ", isError);
+
     if (isValue) {
       return INPUT_STATES.filled;
     }
+
     if (isError) {
       return INPUT_STATES.error;
     }
@@ -35,38 +36,29 @@ export const TextArea = ({ disabled, error, name = "" }) => {
   return (
     <Container>
       <Wrapper>
-        <LabelStyled htmlFor="value" disabled={disabled}>
-          {name}
-        </LabelStyled>
+        <LabelStyled htmlFor={name}>{labelText}</LabelStyled>
         <InputStyled
           type="text"
-          name="value"
-          id="value"
+          name={name}
+          id={name}
           value={inputValue}
-          disabled={disabled}
           placeholder="Input"
-          $isError={isError}
           onChange={(event) => {
             const { value } = event.target;
             setInputValue(value);
-            setClearBtnState(value ? INPUT_STATES.hover : INPUT_STATES.default);
+            setClearBtnState(getBtnState(value));
           }}
-          onMouseMove={() => setClearBtnState(INPUT_STATES.hover)}
+          // onMouseMove={() => setClearBtnState(INPUT_STATES.hover)}
           onMouseLeave={(event) => {
             const { value } = event.target;
-            setClearBtnState(value ? INPUT_STATES.hover : INPUT_STATES.default);
+            setClearBtnState(getBtnState(value));
           }}
         />
         <ClearButtonWrapper>
           <ClearButton
             inputState={clearBtnState}
-            disabled={disabled}
-            isError={isError}
             onClick={() => {
               setInputValue("");
-            }}
-            onMouseMove={() => {
-              setInputState(INPUT_STATES.hover);
             }}
           />
         </ClearButtonWrapper>

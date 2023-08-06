@@ -5,15 +5,13 @@ import {
   Container,
   InputStyled,
   LabelStyled,
-  SelectItem,
-  SelectList,
   Wrapper,
-} from "./Select.styled";
+} from "./SelectDateTime.styled";
 import { IconButton } from "../IconButton/IconButton";
 
 import icons from "../../assets/images/icons.svg";
 
-export const Select = ({
+export const SelectDateTime = ({
   name = "select",
   labelText = "",
   valuesArray = [""],
@@ -22,6 +20,7 @@ export const Select = ({
 }) => {
   const [inputValue, setInputValue] = useState(selectValue || valuesArray[0]);
   const buttonRef = useRef();
+  const containerRef = useRef();
   const selectRef = useRef();
   const [isSelectListVisible, setIsSelectListVisible] = useState(false);
 
@@ -36,21 +35,20 @@ export const Select = ({
     buttonRef.current.classList.remove("rotate180deg");
   });
 
-  useClickAway(selectRef, () => {
+  useClickAway(containerRef, () => {
     setIsSelectListVisible(false);
     buttonRef.current.classList.remove("rotate180deg");
   });
 
   return (
-    <Container ref={selectRef}>
+    <Container ref={containerRef}>
       <Wrapper>
         <LabelStyled htmlFor={name}>{labelText}</LabelStyled>
         <InputStyled
-          type="text"
+          ref={selectRef}
           {...restProps}
           name={name}
           id={name}
-          readOnly
           value={inputValue}
           placeholder="Select"
           onChange={(event) => {
@@ -66,28 +64,13 @@ export const Select = ({
           <IconButton
             iconSvg={icon}
             onClick={() => {
+              selectRef.current.showPicker();
               buttonRotate();
               setIsSelectListVisible(!isSelectListVisible);
             }}
           />
         </ButtonWrapper>
       </Wrapper>
-      {isSelectListVisible && (
-        <SelectList>
-          {valuesArray.map((value) => (
-            <SelectItem
-              key={value}
-              onClick={(event) => {
-                setInputValue(event.target.textContent);
-                setIsSelectListVisible(false);
-                buttonRotate();
-              }}
-            >
-              {value}
-            </SelectItem>
-          ))}
-        </SelectList>
-      )}
     </Container>
   );
 };

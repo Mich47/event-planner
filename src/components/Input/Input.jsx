@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ClearButton } from "../ClearButton/ClearButton";
 import {
   ClearButtonWrapper,
@@ -10,58 +10,76 @@ import {
 } from "./Input.styled";
 import { INPUT_STATES } from "../../constants/InputStates";
 
-export const Input = ({ labelText = "", disabled, error, name = "" }) => {
-  console.log("disabled ", disabled);
-  const [inputValue, setInputValue] = useState("");
-  // const [isDisabled, setIsDisabled] = useState(Boolean(disabled));
-  // console.log("isDisabled ", isDisabled);
-  // const [inputState, setInputState] = useState(INPUT_STATES.default);
-  const [clearBtnState, setClearBtnState] = useState(INPUT_STATES.default);
-  // const [isClearBtnState, setIsClearBtnState] = useState(false);
+export const Input = ({
+  labelText = "",
+  disabled,
+  error,
+  name = "",
 
+  ...restProps
+}) => {
+  const [inputValue, setInputValue] = useState("");
+  const [clearBtnState, setClearBtnState] = useState(INPUT_STATES.default);
+  const inputRef = useRef();
+
+  const isDisabled = Boolean(disabled);
   const isError = Boolean(error);
 
-  // const getBtnState = (isValue, isError) => {
-  //   if (isValue) {
-  //     return INPUT_STATES.filled;
-  //   }
-  //   if (isError) {
-  //     return INPUT_STATES.error;
-  //   }
+  const getBtnState = (value) => {
+    const isValue = Boolean(value);
+    console.log("isValue ", isValue);
+    console.log("isDisabled ", isDisabled);
+    console.log("isError ", isError);
 
-  //   return INPUT_STATES.default;
-  // };
+    if (isValue) {
+      return INPUT_STATES.filled;
+    }
+
+    if (isError) {
+      return INPUT_STATES.error;
+    }
+
+    if (isDisabled) {
+      return INPUT_STATES.disabled;
+    }
+
+    return INPUT_STATES.default;
+  };
 
   return (
     <Container>
       <Wrapper>
-        <LabelStyled htmlFor="value" disabled={disabled}>
+        <LabelStyled htmlFor={name} disabled={disabled}>
           {labelText}
         </LabelStyled>
         <InputStyled
+          ref={inputRef}
           type="text"
-          name="value"
-          id="value"
+          {...restProps}
+          name={name}
+          id={name}
           value={inputValue}
-          disabled={disabled}
+          disabled={isDisabled}
           placeholder="Input"
           $isError={isError}
+          onClick={(event) => {
+            console.log("event ", event);
+          }}
           onChange={(event) => {
             const { value } = event.target;
             setInputValue(value);
-            setClearBtnState(value ? INPUT_STATES.hover : INPUT_STATES.default);
+            setClearBtnState(getBtnState(value));
           }}
-          onMouseMove={() => setClearBtnState(INPUT_STATES.hover)}
+          // onMouseMove={() => setClearBtnState(getBtnState("value"))}
           onMouseLeave={(event) => {
             const { value } = event.target;
-            setClearBtnState(value ? INPUT_STATES.hover : INPUT_STATES.default);
+            setClearBtnState(getBtnState(value));
           }}
         />
         <ClearButtonWrapper>
           <ClearButton
-            inputState={clearBtnState}
             disabled={disabled}
-            isError={isError}
+            inputState={clearBtnState}
             onClick={() => {
               setInputValue("");
             }}

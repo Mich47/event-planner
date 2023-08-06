@@ -11,15 +11,21 @@ export const Button = ({
   size = BUTTON_SIZES.small,
   notAccent,
   onClick,
+  ...restProps
 }) => {
   return (
     <>
       {notAccent ? (
-        <ButtonStyledNotAccent type="button" onClick={onClick}>
+        <ButtonStyledNotAccent type="button" {...restProps} onClick={onClick}>
           <SpanNotAccent>{title}</SpanNotAccent>
         </ButtonStyledNotAccent>
       ) : (
-        <ButtonStyled type="button" size={size} onClick={onClick}>
+        <ButtonStyled
+          type="button"
+          {...restProps}
+          size={size}
+          onClick={onClick}
+        >
           <Span size={size}>{title}</Span>
         </ButtonStyled>
       )}

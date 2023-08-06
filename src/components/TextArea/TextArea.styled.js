@@ -29,14 +29,18 @@ export const LabelStyled = styled.label`
   line-height: 16px; /* 100% */
   letter-spacing: 0.4px;
 `;
-export const InputStyled = styled.input`
+
+export const InputStyled = styled.textarea`
   width: 100%;
+  height: 156px;
+  resize: none;
   padding: 16px 48px 16px 12px;
   background-color: transparent;
   color: var(--text-color-secondary);
-  font-size: 14px;
+  font-family: var(--font-primary);
+  font-size: 16px;
   font-weight: 400;
-  line-height: 100%;
+  line-height: 24px;
   border-radius: 8px;
   border-width: 1px;
   border-style: solid;
@@ -51,10 +55,13 @@ export const InputStyled = styled.input`
       $isError ? "var(--color-hight-hover)" : "var(--color-accent)"};
   }
 
+  &:focus {
+    border-color: var(--color-accent);
+  }
+
   &::placeholder {
     color: var(--color-divider);
     font-size: 16px;
-
     font-weight: 400;
     line-height: 24px;
   }
