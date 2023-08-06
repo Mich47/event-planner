@@ -8,8 +8,8 @@
         </symbol>
         <symbol id="icon-chevron-down" viewBox="0 0 32 32">
             <path fill="none" stroke="currentColor" style="stroke: var(--color1, currentColor)" stroke-linejoin="round"
-                stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"
-                d="M22.667 18.667l-6.667-6.667-6.667 6.667"></path>
+                stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M9.333 13.333l6.667 6.667 6.667-6.667">
+            </path>
         </symbol>
         <symbol id="icon-chevron-left" viewBox="0 0 32 32">
             <path
