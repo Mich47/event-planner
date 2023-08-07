@@ -50,13 +50,14 @@ export const InputStyled = styled.textarea`
   outline: none;
   transition: border-color var(--animation);
 
-  &:hover {
-    border-color: ${({ $isError }) =>
-      $isError ? "var(--color-hight-hover)" : "var(--color-accent)"};
-  }
-
+  &:hover,
   &:focus {
-    border-color: var(--color-accent);
+    border-color: ${({ $isError, disabled }) =>
+      $isError
+        ? "var(--color-hight-hover)"
+        : disabled
+        ? "var(--color-divider)"
+        : "var(--color-accent-hover)"};
   }
 
   &::placeholder {

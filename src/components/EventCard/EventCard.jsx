@@ -1,4 +1,4 @@
-import dateFormat from "dateformat";
+// import dateFormat from "dateformat";
 import { BUTTON_SIZES } from "../../constants/ButtonSizes";
 import { Button } from "../Button/Button";
 import {
@@ -49,12 +49,16 @@ export const EventCard = ({ event }) => {
         <Mark text={priority} />
       </MarkWrapper>
       <ImageContainer>
-        <Image src={picture ?? defaultImg} alt={title ?? "event"} />
+        <Image
+          src={Boolean(picture) ? picture : defaultImg}
+          alt={title ?? "event"}
+        />
       </ImageContainer>
       <DescContainer $isMouseOver={isMouseOver}>
         <DataTimeContainer>
           <DataTimeText>
-            {`${dateFormat(date, "mm.yy")} at ${dateFormat(time, "hh:mm tt")}`}
+            {/* {`${dateFormat(date, "mm.yy")} at ${dateFormat(time, "hh:mm tt")}`} */}
+            {`${date} at ${time}`}
           </DataTimeText>
           <DataTimeText>{location}</DataTimeText>
         </DataTimeContainer>

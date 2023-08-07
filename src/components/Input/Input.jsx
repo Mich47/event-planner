@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ClearButton } from "../ClearButton/ClearButton";
 import {
   ClearButtonWrapper,
@@ -9,42 +9,53 @@ import {
   Wrapper,
 } from "./Input.styled";
 import { INPUT_STATES } from "../../constants/InputStates";
+import { validate } from "../../utils/validators";
 
 export const Input = ({
   labelText = "",
   disabled,
   error,
   name = "",
-
+  value = "",
+  getValueFn,
+  validateRegex,
   ...restProps
 }) => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(value);
   const [clearBtnState, setClearBtnState] = useState(INPUT_STATES.default);
   const inputRef = useRef();
 
   const isDisabled = Boolean(disabled);
-  const isError = Boolean(error);
+  const isError = validateRegex ? !validate(inputValue, validateRegex) : false;
 
-  const getBtnState = (value) => {
-    const isValue = Boolean(value);
-    console.log("isValue ", isValue);
-    console.log("isDisabled ", isDisabled);
-    console.log("isError ", isError);
+  useEffect(() => {
+    const getInputState = (value) => {
+      const isValue = Boolean(value);
 
-    if (isValue) {
-      return INPUT_STATES.filled;
-    }
+      if (typeof getValueFn === "function") {
+        getValueFn(inputValue);
+      }
 
-    if (isError) {
-      return INPUT_STATES.error;
-    }
+      if (isError) {
+        inputRef.current.setCustomValidity("Invalid input");
+        return INPUT_STATES.error;
+      }
 
-    if (isDisabled) {
-      return INPUT_STATES.disabled;
-    }
+      inputRef.current.setCustomValidity("");
 
-    return INPUT_STATES.default;
-  };
+      if (isDisabled) {
+        return INPUT_STATES.disabled;
+      }
+
+      if (isValue) {
+        return INPUT_STATES.filled;
+      }
+
+      return INPUT_STATES.default;
+    };
+
+    setClearBtnState(getInputState(inputValue));
+  }, [inputValue, isError, isDisabled, getValueFn]);
 
   return (
     <Container>
@@ -62,18 +73,9 @@ export const Input = ({
           disabled={isDisabled}
           placeholder="Input"
           $isError={isError}
-          onClick={(event) => {
-            console.log("event ", event);
-          }}
           onChange={(event) => {
             const { value } = event.target;
             setInputValue(value);
-            setClearBtnState(getBtnState(value));
-          }}
-          // onMouseMove={() => setClearBtnState(getBtnState("value"))}
-          onMouseLeave={(event) => {
-            const { value } = event.target;
-            setClearBtnState(getBtnState(value));
           }}
         />
         <ClearButtonWrapper>

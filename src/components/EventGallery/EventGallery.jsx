@@ -1,4 +1,4 @@
-import dateFormat from "dateformat";
+// import dateFormat from "dateformat";
 import { BUTTON_SIZES } from "../../constants/ButtonSizes";
 import { Button } from "../Button/Button";
 import {
@@ -34,11 +34,15 @@ export const EventGallery = ({ event }) => {
   } = event;
 
   const navigate = useNavigate();
+  console.log("picture ", Boolean(picture));
 
   return (
     <Container>
       <ImageContainer>
-        <Image src={picture ?? defaultImg} alt={title ?? "event"} />
+        <Image
+          src={Boolean(picture) ? picture : defaultImg}
+          alt={title ?? "event"}
+        />
       </ImageContainer>
       <Wrapper>
         <DescWrapper>
@@ -48,10 +52,11 @@ export const EventGallery = ({ event }) => {
             <Mark text={priority} />
             <Mark text={location} />
             <Mark
-              text={`${dateFormat(date, "mm.yy")} at ${dateFormat(
-                time,
-                "hh:mm tt"
-              )}`}
+              text={`${date} at ${time}`}
+              // text={`${dateFormat(date, "mm.yy")} at ${dateFormat(
+              //   time,
+              //   "hh:mm tt"
+              // )}`}
             />
           </MarkWrapper>
         </DescWrapper>

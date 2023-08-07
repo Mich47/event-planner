@@ -43,21 +43,17 @@ export const InputStyled = styled.input`
   border-style: solid;
   border-color: ${({ $isError }) =>
     $isError ? "var(--color-hight)" : "var(--color-divider)"};
-  /* background: #fff; */
   outline: none;
   transition: border-color var(--animation);
 
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: ${({ $isError, disabled }) =>
       $isError
         ? "var(--color-hight-hover)"
         : disabled
         ? "var(--color-divider)"
-        : "var(--color-accent)"};
-  }
-
-  &:focus {
-    border-color: var(--color-accent);
+        : "var(--color-accent-hover)"};
   }
 
   &::placeholder {

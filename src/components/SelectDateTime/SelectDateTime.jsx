@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useClickAway, useKeyPressEvent } from "react-use";
 import {
   ButtonWrapper,
@@ -15,16 +15,23 @@ export const SelectDateTime = ({
   name = "select",
   labelText = "",
   valuesArray = [""],
-  selectValue = "",
+  value = "",
+  getValueFn,
   ...restProps
 }) => {
-  const [inputValue, setInputValue] = useState(selectValue || valuesArray[0]);
+  const [inputValue, setInputValue] = useState(value || valuesArray[0]);
   const buttonRef = useRef();
   const containerRef = useRef();
   const selectRef = useRef();
   const [isSelectListVisible, setIsSelectListVisible] = useState(false);
 
   const icon = `${icons}#icon-chevron-down`;
+
+  useEffect(() => {
+    if (typeof getValueFn === "function") {
+      getValueFn(inputValue);
+    }
+  }, [getValueFn, inputValue]);
 
   const buttonRotate = () => {
     buttonRef.current.classList.toggle("rotate180deg");

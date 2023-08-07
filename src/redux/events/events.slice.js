@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteEvent, getAllEvents, getEvent } from "./events.operations";
+import {
+  deleteEvent,
+  getAllEvents,
+  getEvent,
+  postEvent,
+  putEvent,
+} from "./events.operations";
 
 const initialState = {
   events: [],
@@ -36,6 +42,30 @@ const eventSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getEvent.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+      })
+      .addCase(postEvent.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(postEvent.fulfilled, (state, { payload }) => {
+        state.events.push(payload);
+        state.error = null;
+        state.isLoading = false;
+      })
+      .addCase(postEvent.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+      })
+      .addCase(putEvent.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(putEvent.fulfilled, (state, { payload }) => {
+        state.currentEvent = payload;
+        state.error = null;
+        state.isLoading = false;
+      })
+      .addCase(putEvent.rejected, (state, { payload }) => {
         state.error = payload;
         state.isLoading = false;
       })

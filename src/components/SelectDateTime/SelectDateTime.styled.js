@@ -49,7 +49,8 @@ export const InputStyled = styled.input`
   transition: border-color var(--animation);
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: var(--color-accent);
   }
 

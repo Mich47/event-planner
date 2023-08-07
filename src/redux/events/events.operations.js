@@ -32,6 +32,35 @@ export const getEvent = createAsyncThunk(
   }
 );
 
+export const postEvent = createAsyncThunk(
+  "events/addEvent",
+  async (newEvent, thunkAPI) => {
+    try {
+      const { data } = await axios.post(`/events`, newEvent);
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const putEvent = createAsyncThunk(
+  "events/updateEventById",
+  async (updatedEvent, thunkAPI) => {
+    try {
+      const { data } = await axios.put(
+        `/events/${updatedEvent.id}`,
+        updatedEvent
+      );
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const deleteEvent = createAsyncThunk(
   "events/deleteEvent",
   async (id, thunkAPI) => {
