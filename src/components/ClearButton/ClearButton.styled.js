@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { INPUT_STATES } from "../../constants/InputStates";
 
 const colorOfState = ({ $inputState }) => {
-  console.log("$inputState ", $inputState);
   if ($inputState === INPUT_STATES.disabled) {
     return "var(--color-divider)";
   }

@@ -1,3 +1,4 @@
+import dateFormat from "dateformat";
 import { BUTTON_SIZES } from "../../constants/ButtonSizes";
 import { Button } from "../Button/Button";
 import {
@@ -53,7 +54,7 @@ export const EventCard = ({ event }) => {
       <DescContainer $isMouseOver={isMouseOver}>
         <DataTimeContainer>
           <DataTimeText>
-            {date} at {time}
+            {`${dateFormat(date, "mm.yy")} at ${dateFormat(time, "hh:mm tt")}`}
           </DataTimeText>
           <DataTimeText>{location}</DataTimeText>
         </DataTimeContainer>

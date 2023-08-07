@@ -1,67 +1,20 @@
+import { useDispatch, useSelector } from "react-redux";
 import { AddButton } from "../../components/AddButton/AddButton";
 import { EventList } from "../../components/EventList/EventList";
 import { PAGE_NAME } from "../../constants/PageName";
 import { Container, SectionStyled, TitleStyled, Wrapper } from "./Home.styled";
-
-const events = [
-  {
-    id: 1,
-    title: "title",
-    description: "description",
-    date: "date",
-    time: "time",
-    location: "location",
-    category: "category",
-    // picture: "picture",
-    priority: "priority",
-  },
-  {
-    id: 2,
-    title: "title",
-    description: "description",
-    date: "date",
-    time: "time",
-    location: "location",
-    category: "category",
-    // picture: "picture",
-    priority: "priority",
-  },
-  {
-    id: 3,
-    title: "title",
-    description: "description",
-    date: "date",
-    time: "time",
-    location: "location",
-    category: "category",
-    // picture: "picture",
-    priority: "priority",
-  },
-  {
-    id: 4,
-    title: "title",
-    description: "description",
-    date: "date",
-    time: "time",
-    location: "location",
-    category: "category",
-    // picture: "picture",
-    priority: "priority",
-  },
-  {
-    id: 5,
-    title: "title",
-    description: "description",
-    date: "date",
-    time: "time",
-    location: "location",
-    category: "category",
-    // picture: "picture",
-    priority: "priority",
-  },
-];
+import { useEffect } from "react";
+import { getAllEvents } from "../../redux/events/events.operations";
+import { selectAllEvents } from "../../redux/events/events.selectors";
 
 export default function Home() {
+  const dispatch = useDispatch();
+  const events = useSelector(selectAllEvents);
+
+  useEffect(() => {
+    dispatch(getAllEvents());
+  }, [dispatch]);
+
   return (
     <SectionStyled>
       <Container>
