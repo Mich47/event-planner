@@ -25,7 +25,9 @@ const eventSlice = createSlice({
         state.currentEvent = null;
       })
       .addCase(getAllEvents.fulfilled, (state, { payload }) => {
-        state.events = [...payload];
+        state.events = [
+          ...payload.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)),
+        ];
         state.error = null;
         state.isLoading = false;
       })

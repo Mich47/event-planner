@@ -24,8 +24,13 @@ export const EventForm = ({ event }) => {
   const [location, setLocation] = useState(event?.location ?? "");
   const [category, setCategory] = useState(event?.category ?? "");
   const [priority, setPriority] = useState(event?.priority ?? "");
-  const [date, setDate] = useState(dateFormat(event?.date, "yyyy-mm-dd") ?? "");
-  const [time, setTime] = useState(dateFormat(event?.date, "hh:mm") ?? "");
+  const [date, setDate] = useState(
+    dateFormat(event?.date, "yyyy-mm-dd") ??
+      dateFormat(Date.now(), "yyyy-mm-dd")
+  );
+  const [time, setTime] = useState(
+    dateFormat(event?.date, "hh:mm") ?? dateFormat(Date.now(), "hh:mm")
+  );
   const [description, setDescription] = useState(event?.description ?? "");
   const [picture, setPicture] = useState(event?.picture ?? "");
 
@@ -78,6 +83,7 @@ export const EventForm = ({ event }) => {
           labelText="Select date"
           name="date"
           type="date"
+          min={dateFormat(Date.now(), "yyyy-mm-dd")}
           value={date}
           getValueFn={setDate}
           required
@@ -86,6 +92,7 @@ export const EventForm = ({ event }) => {
           labelText="Select time"
           name="time"
           type="time"
+          // min={dateFormat(Date.now(), "hh:mm")}
           value={time}
           getValueFn={setTime}
           required
