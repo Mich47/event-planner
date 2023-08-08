@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   events: [],
+  searchValue: "",
   currentEvent: null,
   isLoading: false,
   error: null,
@@ -17,6 +18,12 @@ const initialState = {
 const eventSlice = createSlice({
   name: "event",
   initialState,
+
+  reducers: {
+    searchEvents(state, { payload }) {
+      state.searchValue = payload;
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -86,5 +93,7 @@ const eventSlice = createSlice({
       });
   },
 });
+
+export const { searchEvents } = eventSlice.actions;
 
 export const eventReducer = eventSlice.reducer;
