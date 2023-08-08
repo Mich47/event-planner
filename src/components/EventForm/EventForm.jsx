@@ -5,16 +5,16 @@ import { Input } from "../Input/Input";
 import { Select } from "../Select/Select";
 import { SelectDateTime } from "../SelectDateTime/SelectDateTime";
 import { TextArea } from "../TextArea/TextArea";
-import { FormStyled } from "./EventForm.styled";
+import { FormStyled, Wrapper } from "./EventForm.styled";
 import { LOCATION_REGEX, TITLE_REGEX } from "../../constants/validateRegex";
 import { CATEGORIES } from "../../constants/categories";
 import { PRIORITIES } from "../../constants/priorities";
 import { useDispatch } from "react-redux";
 import { postEvent, putEvent } from "../../redux/events/events.operations";
 import { useNavigate } from "react-router-dom";
+import dateFormat from "dateformat";
 
 export const EventForm = ({ event }) => {
-  console.log("event ", event);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,8 +24,8 @@ export const EventForm = ({ event }) => {
   const [location, setLocation] = useState(event?.location ?? "");
   const [category, setCategory] = useState(event?.category ?? "");
   const [priority, setPriority] = useState(event?.priority ?? "");
-  const [date, setDate] = useState(event?.date ?? "");
-  const [time, setTime] = useState(event?.time ?? "");
+  const [date, setDate] = useState(dateFormat(event?.date, "yyyy-mm-dd") ?? "");
+  const [time, setTime] = useState(dateFormat(event?.date, "hh:mm") ?? "");
   const [description, setDescription] = useState(event?.description ?? "");
   const [picture, setPicture] = useState(event?.picture ?? "");
 
@@ -36,12 +36,10 @@ export const EventForm = ({ event }) => {
       location,
       category,
       priority,
-      date,
-      time,
+      date: new Date(`${date} ${time}`).toISOString(),
       description,
       picture,
     };
-    console.log("formData ", formData);
 
     try {
       if (isNewEvent) {
@@ -58,7 +56,7 @@ export const EventForm = ({ event }) => {
   };
   return (
     <FormStyled onSubmit={handleSubmit}>
-      <div>
+      <Wrapper>
         <Input
           labelText="Title"
           name="title"
@@ -67,13 +65,15 @@ export const EventForm = ({ event }) => {
           validateRegex={TITLE_REGEX}
           required
         />
-        <TextArea
-          labelText="Description"
-          name="description"
-          value={description}
-          getValueFn={setDescription}
-          required
-        />
+        <div style={{ gridArea: "b" }}>
+          <TextArea
+            labelText="Description"
+            name="description"
+            value={description}
+            getValueFn={setDescription}
+            required
+          />
+        </div>
         <SelectDateTime
           labelText="Select date"
           name="date"
@@ -115,9 +115,9 @@ export const EventForm = ({ event }) => {
           name="priority"
           value={priority}
           getValueFn={setPriority}
-          valuesArray={PRIORITIES}
+          valuesArray={Object.values(PRIORITIES)}
         />
-      </div>
+      </Wrapper>
       <Button
         type="submit"
         title={isNewEvent ? "Add event" : "Save"}

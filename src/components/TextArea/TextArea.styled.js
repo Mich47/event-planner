@@ -32,7 +32,7 @@ export const LabelStyled = styled.label`
 
 export const InputStyled = styled.textarea`
   width: 100%;
-  height: 156px;
+  height: 164px;
   resize: none;
   padding: 16px 48px 16px 12px;
   background-color: transparent;
@@ -81,5 +81,5 @@ export const ErrorText = styled.p`
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
-  height: 16px;
+  height: 20px;
 `;

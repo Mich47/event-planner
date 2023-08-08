@@ -1,4 +1,4 @@
-// import dateFormat from "dateformat";
+import dateFormat from "dateformat";
 import { BUTTON_SIZES } from "../../constants/ButtonSizes";
 import { Button } from "../Button/Button";
 import {
@@ -26,7 +26,6 @@ export const EventCard = ({ event }) => {
     title,
     description,
     date,
-    time,
     location,
     category,
     picture,
@@ -57,8 +56,7 @@ export const EventCard = ({ event }) => {
       <DescContainer $isMouseOver={isMouseOver}>
         <DataTimeContainer>
           <DataTimeText>
-            {/* {`${dateFormat(date, "mm.yy")} at ${dateFormat(time, "hh:mm tt")}`} */}
-            {`${date} at ${time}`}
+            {`${dateFormat(date, "dd.mm")} at ${dateFormat(date, "hh:mm")}`}
           </DataTimeText>
           <DataTimeText>{location}</DataTimeText>
         </DataTimeContainer>

@@ -5,27 +5,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { getEvent } from "../../redux/events/events.operations";
 import { useEffect } from "react";
 import { selectCurrentEvent } from "../../redux/events/events.selectors";
-import { EventGallery } from "../../components/EventGallery/EventGallery";
+import { EventMoreInfo } from "../../components/EventMoreInfo/EventMoreInfo";
+import { Wrapper } from "./Event.styled";
 
 export default function Event() {
   const { id } = useParams();
-  console.log("id ", id);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getEvent(id));
   }, [dispatch, id]);
 
   const event = useSelector(selectCurrentEvent);
-  console.log("event ", event);
 
-  console.log("params ", id);
-  // console.log("id ", id);
   return (
     <Section>
       {event && (
         <>
-          <SectionTitle>{event.title}</SectionTitle>
-          <EventGallery event={event} />
+          <Wrapper>
+            <SectionTitle>{event.title}</SectionTitle>
+          </Wrapper>
+          <EventMoreInfo event={event} />
         </>
       )}
     </Section>

@@ -1,4 +1,4 @@
-// import dateFormat from "dateformat";
+import dateFormat from "dateformat";
 import { BUTTON_SIZES } from "../../constants/ButtonSizes";
 import { Button } from "../Button/Button";
 import {
@@ -10,15 +10,15 @@ import {
   MarkWrapper,
   BtnContainer,
   Wrapper,
-} from "./EventGallery.styled";
+} from "./EventMoreInfo.styled";
 
 import defaultImg from "../../assets/images/default-img-l.svg";
 import { Mark } from "../Mark/Mark";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteEvent } from "../../redux/events/events.operations";
 
-export const EventGallery = ({ event }) => {
+export const EventMoreInfo = ({ event }) => {
   const dispatch = useDispatch();
 
   const {
@@ -26,7 +26,6 @@ export const EventGallery = ({ event }) => {
     title,
     description,
     date,
-    time,
     location,
     category,
     picture,
@@ -34,7 +33,7 @@ export const EventGallery = ({ event }) => {
   } = event;
 
   const navigate = useNavigate();
-  console.log("picture ", Boolean(picture));
+  const pageLocation = useLocation();
 
   return (
     <Container>
@@ -52,11 +51,10 @@ export const EventGallery = ({ event }) => {
             <Mark text={priority} />
             <Mark text={location} />
             <Mark
-              text={`${date} at ${time}`}
-              // text={`${dateFormat(date, "mm.yy")} at ${dateFormat(
-              //   time,
-              //   "hh:mm tt"
-              // )}`}
+              text={`${dateFormat(date, "dd.mm")} at ${dateFormat(
+                date,
+                "hh:mm"
+              )}`}
             />
           </MarkWrapper>
         </DescWrapper>
@@ -66,7 +64,7 @@ export const EventGallery = ({ event }) => {
             size={BUTTON_SIZES.small}
             title="Edit"
             onClick={() => {
-              navigate("/edit", id);
+              navigate("/edit", { state: { from: pageLocation } });
             }}
           />
           <Button
