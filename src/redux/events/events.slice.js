@@ -69,19 +69,6 @@ const eventSlice = createSlice({
         state.error = payload;
         state.isLoading = false;
       })
-
-      // .addCase(addTaskOperation.pending, (state) => {
-      //   state.isLoading = true;
-      // })
-      // .addCase(addTaskOperation.fulfilled, (state, { payload }) => {
-      //   state.tasks[state.indexCurrentDay].push(payload);
-      //   state.error = null;
-      //   state.isLoading = false;
-      // })
-      // .addCase(addTaskOperation.rejected, (state, { payload }) => {
-      //   state.error = payload;
-      //   state.isLoading = false;
-      // })
       .addCase(deleteEvent.pending, (state) => {
         state.isLoading = true;
       })
@@ -95,32 +82,7 @@ const eventSlice = createSlice({
         state.error = payload;
         state.isLoading = false;
       });
-    // .addCase(editTaskOperation.pending, (state) => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(editTaskOperation.fulfilled, (state, { payload }) => {
-    //   const index = state.tasks[state.indexCurrentDay].findIndex(
-    //     (task) => task._id === payload._id
-    //   );
-    //   if (index !== -1) {
-    //     state.tasks[state.indexCurrentDay][index] = payload;
-    //   }
-    //   state.isLoading = false;
-    //   state.error = null;
-    // })
-    // .addCase(editTaskOperation.rejected, (state, { payload }) => {
-    //   state.error = payload;
-    //   state.isLoading = false;
-    // });
   },
 });
-
-// export const {
-//   getAllEvents,
-
-//   // addIndexCurrentDay,
-//   // addChoosedDay,
-//   // clearTasks,
-// } = eventSlice.actions;
 
 export const eventReducer = eventSlice.reducer;
